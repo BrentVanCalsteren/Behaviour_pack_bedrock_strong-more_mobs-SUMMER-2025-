@@ -1,0 +1,44 @@
+{
+  "pools": [
+    /* Pool A: mainhand ranged weapon (worn, enchanted) */
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:bow",
+          "weight": 45,
+          "functions": [
+            { "function": "set_damage", "damage": { "min": 0.10, "max": 0.5 } },
+            { "function": "enchant_with_levels", "levels": { "min": 16, "max": 35 }, "treasure": false }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:crossbow",
+          "weight": 20,
+          "functions": [
+            { "function": "set_damage", "damage": { "min": 0.10, "max": 0.5 } },
+            { "function": "enchant_with_levels", "levels": { "min": 14, "max": 35 }, "treasure": false }
+          ]
+        }
+      ]
+    },
+
+    /* Pool B: armor tier selection (same as zombie; calls your armor_set_* tables) */
+    {
+      "conditions": [
+        { "condition": "random_difficulty_chance", "default_chance": 1.0, "peaceful": 0.0, "easy": 1.0, "normal": 1.0, "hard": 1.0 },
+        { "condition": "random_regional_difficulty_chance", "max_chance": 0.90 }
+      ],
+      "tiers": { "initial_range": 2, "bonus_rolls": 5, "bonus_chance": 0.30 },
+      "entries": [
+        { "type": "loot_table", "name": "loot_tables/entities/armor_set_leather.json"  },
+        { "type": "loot_table", "name": "loot_tables/entities/armor_set_chain.json"    },
+        { "type": "loot_table", "name": "loot_tables/entities/armor_set_iron.json"     },
+        { "type": "loot_table", "name": "loot_tables/entities/armor_set_gold.json"     },
+        { "type": "loot_table", "name": "loot_tables/entities/armor_set_diamond.json"  }
+      ]
+    }
+  ]
+}

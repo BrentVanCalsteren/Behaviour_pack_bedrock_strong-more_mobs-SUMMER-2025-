@@ -1,0 +1,69 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:iron_sword",
+          "weight": 20,
+          "functions": [
+            { "function": "set_damage", "damage": { "min": 0.10, "max": 0.5 } },
+            { "function": "enchant_with_levels", "levels": { "min": 16, "max": 34 }, "treasure": true }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:iron_axe",
+          "weight": 25,
+          "functions": [
+            { "function": "set_damage", "damage": { "min": 0.10, "max": 0.5 } },
+            { "function": "enchant_with_levels", "levels": { "min": 14, "max": 34 }, "treasure": true }
+          ]
+        },
+           {
+      "type": "item",
+      "name": "minecraft:diamond_sword",
+      "weight": 5,
+      "functions": [
+        { "function": "set_damage", "damage": { "min": 0.05, "max": 0.35 } },
+        { "function": "enchant_with_levels", "levels": { "min": 18, "max": 30 }, "treasure": false }
+      ]
+    },
+    {
+      "type": "item",
+      "name": "minecraft:diamond_axe",
+      "weight": 10,
+      "functions": [
+        { "function": "set_damage", "damage": { "min": 0.05, "max": 0.35 } },
+        { "function": "enchant_with_levels", "levels": { "min": 18, "max": 32 }, "treasure": false }
+      ]
+    },
+        {
+          "type": "item",
+          "name": "minecraft:stone_sword",
+          "weight": 30,
+          "functions": [
+            { "function": "set_damage", "damage": { "min": 0.20, "max": 0.50 } },
+            { "function": "enchant_with_levels", "levels": { "min": 8, "max": 34 }, "treasure": true }
+          ]
+        },
+        { "type": "empty", "weight": 30 }
+      ]
+    },
+    {
+      "conditions": [
+        { "condition": "random_difficulty_chance", "default_chance": 1.0, "peaceful": 0.0, "easy": 1.0, "normal": 1.0, "hard": 1.0 },
+        { "condition": "random_regional_difficulty_chance", "max_chance": 0.90 }
+      ],
+      "tiers": { "initial_range": 2, "bonus_rolls": 5, "bonus_chance": 0.30 },
+      "entries": [
+        { "type": "loot_table", "name": "loot_tables/entities/armor_set_leather.json"  },
+        { "type": "loot_table", "name": "loot_tables/entities/armor_set_chain.json"    },
+        { "type": "loot_table", "name": "loot_tables/entities/armor_set_iron.json"     },
+        { "type": "loot_table", "name": "loot_tables/entities/armor_set_gold.json"     },
+        { "type": "loot_table", "name": "loot_tables/entities/armor_set_diamond.json"  }
+      ]
+    }
+  ]
+}

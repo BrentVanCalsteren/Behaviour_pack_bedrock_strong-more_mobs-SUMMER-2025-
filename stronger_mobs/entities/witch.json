@@ -1,0 +1,348 @@
+{
+  "format_version": "1.21.90",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "minecraft:witch",
+      "spawn_category": "monster",
+      "is_spawnable": true,
+      "is_summonable": true
+    },
+    "components": {
+      "minecraft:is_hidden_when_invisible": {},
+      "minecraft:experience_reward": {
+        "on_death": "query.last_hit_by_player ? 8 : 0"
+      },
+      "minecraft:breathable": {
+        "total_supply": 15,
+        "suffocate_time": 0
+      },
+      "minecraft:nameable": {},
+      "minecraft:loot": {
+        "table": "loot_tables/entities/witch_strong.json"
+      },
+      "minecraft:health": {
+        "value": 36,
+        "max": 36
+      },
+      "minecraft:hurt_on_condition": {
+        "damage_conditions": [
+          {
+            "filters": {
+              "test": "in_lava",
+              "subject": "self",
+              "operator": "==",
+              "value": true
+            },
+            "cause": "lava",
+            "damage_per_tick": 4
+          }
+        ]
+      },
+      "minecraft:movement": {
+        "value": 0.32
+      },
+      "minecraft:navigation.walk": {
+        "can_path_over_water": true,
+        "avoid_water": false
+      },
+      "minecraft:movement.basic": {},
+      "minecraft:jump.static": {},
+      "minecraft:can_climb": {},
+      "minecraft:despawn": {
+        "despawn_from_distance": {}
+      },
+      "minecraft:behavior.float": {
+        "priority": 1
+      },
+      "minecraft:behavior.ranged_attack": {
+        "priority": 2,
+        "speed_multiplier": 1.1,
+        "attack_interval_min": 1.5,
+        "attack_interval_max": 2.2,
+        "attack_radius": 14.0
+      },
+      "minecraft:shooter": {
+        "power": 0.95,
+        "def": "minecraft:splash_potion",
+        "aux_val": 23,
+        "sound": "throw",
+        "projectiles": [
+          {
+            "def": "minecraft:splash_potion",
+            "aux_val": 21,
+            "filters": {
+              "all_of": [
+                {
+                  "test": "is_raider",
+                  "subject": "other",
+                  "value": true
+                },
+                {
+                  "test": "actor_health",
+                  "subject": "other",
+                  "value": 6,
+                  "operator": "<="
+                }
+              ]
+            },
+            "lose_target": true
+          },
+          {
+            "def": "minecraft:splash_potion",
+            "aux_val": 28,
+            "filters": {
+              "all_of": [
+                {
+                  "test": "is_raider",
+                  "subject": "other",
+                  "value": true
+                }
+              ]
+            },
+            "lose_target": true
+          },
+          {
+            "def": "minecraft:splash_potion",
+            "aux_val": 17,
+            "filters": {
+              "all_of": [
+                {
+                  "test": "target_distance",
+                  "subject": "self",
+                  "value": 10.0,
+                  "operator": ">="
+                },
+                {
+                  "none_of": [
+                    {
+                      "test": "has_mob_effect",
+                      "subject": "other",
+                      "value": "slowness"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "def": "minecraft:splash_potion",
+            "aux_val": 34,
+            "filters": {
+              "all_of": [
+                {
+                  "test": "target_distance",
+                  "subject": "self",
+                  "value": 4.5,
+                  "operator": "<="
+                },
+                {
+                  "none_of": [
+                    {
+                      "test": "has_mob_effect",
+                      "subject": "other",
+                      "value": "weakness"
+                    }
+                  ]
+                }
+              ]
+            },
+            "chance": 0.45
+          },
+          {
+            "def": "minecraft:splash_potion",
+            "aux_val": 25,
+            "filters": {
+              "all_of": [
+                {
+                  "test": "actor_health",
+                  "subject": "other",
+                  "value": 12,
+                  "operator": ">="
+                },
+                {
+                  "none_of": [
+                    {
+                      "test": "has_mob_effect",
+                      "subject": "other",
+                      "value": "poison"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "magic": true
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 4,
+        "speed_multiplier": 1.0
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 5,
+        "look_distance": 16.0
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 5,
+        "look_distance": 8.0
+      },
+      "minecraft:behavior.drink_potion": {
+        "priority": 1,
+        "speed_modifier": -0.2,
+        "potions": [
+          {
+            "id": 19,
+            "chance": 0.2,
+            "filters": {
+              "all_of": [
+                {
+                  "test": "is_underwater",
+                  "subject": "self",
+                  "value": true
+                },
+                {
+                  "none_of": [
+                    {
+                      "test": "has_mob_effect",
+                      "subject": "self",
+                      "value": "water_breathing"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": 12,
+            "chance": 0.25,
+            "filters": {
+              "all_of": [
+                {
+                  "any_of": [
+                    {
+                      "test": "on_fire",
+                      "subject": "self",
+                      "value": true
+                    },
+                    {
+                      "test": "on_hot_block",
+                      "subject": "self",
+                      "value": true
+                    },
+                    {
+                      "test": "taking_fire_damage",
+                      "subject": "self",
+                      "value": true
+                    }
+                  ]
+                },
+                {
+                  "none_of": [
+                    {
+                      "test": "has_mob_effect",
+                      "subject": "self",
+                      "value": "fire_resistance"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": 21,
+            "chance": 0.1,
+            "filters": {
+              "all_of": [
+                {
+                  "test": "is_missing_health",
+                  "subject": "self",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "id": 14,
+            "chance": 0.3,
+            "filters": {
+              "all_of": [
+                {
+                  "test": "has_target",
+                  "subject": "self",
+                  "value": true
+                },
+                {
+                  "none_of": [
+                    {
+                      "test": "has_mob_effect",
+                      "subject": "self",
+                      "value": "speed"
+                    }
+                  ]
+                },
+                {
+                  "test": "target_distance",
+                  "subject": "self",
+                  "value": 9.0,
+                  "operator": ">="
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1
+      },
+      "minecraft:behavior.nearest_prioritized_attackable_target": {
+        "priority": 2,
+        "entity_types": [
+          {
+            "filters": {
+              "any_of": [
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "value": "player"
+                },
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "value": "snowgolem"
+                },
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "value": "irongolem"
+                }
+              ]
+            },
+            "priority": 1,
+            "max_dist": 12
+          }
+        ],
+        "must_reach": true
+      },
+      "minecraft:type_family": {
+        "family": [
+          "witch",
+          "monster",
+          "mob"
+        ]
+      },
+      "minecraft:collision_box": {
+        "width": 0.6,
+        "height": 1.9
+      },
+      "minecraft:physics": {},
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:follow_range": {
+        "value": 64
+      },
+      "minecraft:conditional_bandwidth_optimization": {}
+    }
+  }
+}
